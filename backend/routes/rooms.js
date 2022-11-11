@@ -32,7 +32,7 @@ router.get("/display", function (req, res, next) {
 
 router.get("/display/:id", function (req, res, next) {
   pool.query(
-    "select *,group_concat(date) as dates from rooms R left join booking B on B.roomid=R.id and R.id=?",
+    "select *,group_concat(date) as dates from rooms R left join booking B on B.roomid=R.id where R.id=?",
     [req.params.id],
     function (err, result) {
       if (err) {
